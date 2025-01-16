@@ -1,6 +1,9 @@
+{% load static %}
+
 <html>
   <head>
     <title>{% block title %}Default Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
   </head>
   <body>
     {% block content %}

@@ -32,8 +32,16 @@ def register(request):
       username=username,
       password=password
     )
-
     user.save()
+
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+      # log the user in
+      login(request, user)
+      return redirect('home')
+    else:
+      return HttpResponse("Invalid credentials")
+      return redirect('login')
   return render(request, 'user/register.html')
 
 def logout_view(request):

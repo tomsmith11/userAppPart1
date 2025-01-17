@@ -7,4 +7,11 @@
 {% block content %}
     <h1>login</h1>
 
-{% endblock %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="User Name" />
+        <input type="password" name="password" placeholder="Enter Password" />
+        <input type="submit" value="Login" />
+    </form>
+        
+{% endblock content %}

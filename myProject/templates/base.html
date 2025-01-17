@@ -7,6 +7,11 @@
   </head>
   <body>
 
+    <!-- 
+      Add a logged in as: {{ username }} and logout button, only when
+      a user is logged in.
+    -->
+
     {% if user.is_authenticated %}
       <p>Logged in as: {{user.username}}</p>
       <form method="POST" action="{% url 'logout' %}">
@@ -16,6 +21,10 @@
     {% endif %}
     {% block content %}
     {% endblock %}
+
+    <!-- 
+      Display error messages (if any)
+    -->
 
     {% if messages %}
         <ul class="messages">

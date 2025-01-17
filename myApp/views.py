@@ -10,7 +10,7 @@ from django.contrib import messages
 def home(request):
   return render(request, 'user/home.html')
 
-def login(request):
+def login_page(request):
   if request.method == 'POST':
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -39,18 +39,8 @@ def register(request):
       password=password
     )
     user.save()
-
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-      # log the user in
-      login(request, user)
-      messages.success(request, "Registration successful and you are now logged in.")
-      return redirect('home')
-
-    else:
-      messages.error(request, "Authentication failed. Please try logging in.")
-      return redirect('login')
-      return render(request, 'user/register.html')
+    return redirect('login')
+  return render(request, 'user/register.html')
 
 def logout_view(request):
   logout(request)
